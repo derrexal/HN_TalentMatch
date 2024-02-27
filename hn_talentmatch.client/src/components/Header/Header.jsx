@@ -7,7 +7,7 @@ const Header = () => {
         <Container>
             <Nav>
                 <NavItem><Link to="/">Добро пожаловать!</Link></NavItem>
-                <NavItem><Link to="/data">Прогноз погоды</Link></NavItem>
+                <NavItem><Link to="/data">Посмотреть прогноз погоды</Link></NavItem>
             </Nav>
         </Container>
     );
