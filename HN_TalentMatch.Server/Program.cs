@@ -24,7 +24,6 @@ namespace HN_TalentMatch.Server
             using (var scope = app.Services.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<HN_TalentMatchServerContext>();
-                context.Database.EnsureCreated();
                 context.Database.Migrate();
                 SeedAsync(context);
             }
