@@ -8,7 +8,7 @@ EXPOSE 8080
 EXPOSE 8443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-ARG BUILD_CONFIGURATION=Development
+ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["hn_talentmatch.client/nuget.config", "hn_talentmatch.client/"]
 COPY ["HN_TalentMatch.Server/HN_TalentMatch.Server.csproj", "HN_TalentMatch.Server/"]
