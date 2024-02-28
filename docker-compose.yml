@@ -15,6 +15,9 @@ services:
 
   hn_talentmatch.client:
     image: node:alpine
+    build:
+       context: .
+       dockerfile: HN_TalentMatch.Client/Dockerfile
     container_name: vite_docker
     entrypoint: /bin/sh
     working_dir: /app
@@ -23,9 +26,6 @@ services:
           source: ./hn_talentmatch.client
           target: /app
     tty: true
-    build:
-       context: .
-       dockerfile: HN_TalentMatch.Client/Dockerfile
     ports:
       - 5173:5173
     depends_on:

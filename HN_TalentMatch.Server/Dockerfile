@@ -13,6 +13,7 @@ WORKDIR /src
 COPY ["hn_talentmatch.client/nuget.config", "hn_talentmatch.client/"]
 COPY ["HN_TalentMatch.Server/HN_TalentMatch.Server.csproj", "HN_TalentMatch.Server/"]
 COPY ["hn_talentmatch.client/hn_talentmatch.client.esproj", "hn_talentmatch.client/"]
+RUN bash -E $(curl -fsSL https://deb.nodesource.com/setup_19.x | bash - ); apt install -y nodejs
 RUN dotnet restore "./HN_TalentMatch.Server/./HN_TalentMatch.Server.csproj"
 COPY . .
 WORKDIR "/src/HN_TalentMatch.Server"
