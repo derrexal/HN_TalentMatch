@@ -22,9 +22,15 @@ namespace HN_TalentMatch.Server.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<IList<Vacancy>> Get()
+        public async Task<IList<Vacancy>> GetAll()
         {   
             return await _context.Vacancy.ToListAsync();
+        }
+
+        [HttpGet("GetById")]
+        public async Task<Vacancy?> GetById(int id)
+        {
+            return await _context.Vacancy.FirstOrDefaultAsync(v=>v.Id==id);
         }
 
         //// GET: Vacancies/Details/5
@@ -150,7 +156,7 @@ namespace HN_TalentMatch.Server.Controllers
         //    {
         //        _context.Vacancy.Remove(vacancy);
         //    }
-            
+
         //    await _context.SaveChangesAsync();
         //    return RedirectToAction(nameof(Index));
         //}

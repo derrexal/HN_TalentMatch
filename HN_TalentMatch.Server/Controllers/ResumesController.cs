@@ -1,5 +1,6 @@
 ﻿using HN_TalentMatch.Server.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HN_TalentMatch.Server.Controllers
 {
@@ -17,9 +18,15 @@ namespace HN_TalentMatch.Server.Controllers
         }
 
         [HttpGet("GetAll")]
-        public IEnumerable<Resume> Get()
+        public IEnumerable<Resume> GetAll()
         {
             return _context.Resume.ToArray();
+        }
+
+        [HttpGet("GetById")]
+        public async Task<Resume?> GetById(int id)
+        {
+            return await _context.Resume.FirstOrDefaultAsync(v => v.Id == id);
         }
     }
 }
