@@ -49,6 +49,14 @@ export default defineConfig({
             '^/weatherforecast': {
                 target: 'https://localhost:7026/',
                 secure: false
+            },
+            '^/resumes': {
+                target: 'https://localhost:7026/',
+                secure: false
+            },
+            '^/vacancies': {
+                target: 'https://localhost:7026/',
+                secure: false
             }
         },
         port: 5173,

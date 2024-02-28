@@ -9,7 +9,7 @@ const useWeatherData = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('weatherforecast');
+                const response = await axios.get('resumes/GetAll');
                 setData(response.data);
                 setLoading(false);
             } catch (error) {

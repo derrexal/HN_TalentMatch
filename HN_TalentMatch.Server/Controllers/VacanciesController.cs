@@ -21,9 +21,8 @@ namespace HN_TalentMatch.Server.Controllers
             _context = context;
         }
 
-        // GET: Vacancies
-        [HttpGet("Get")]
-        public async Task<IList<Vacancy>> Index()
+        [HttpGet("GetAll")]
+        public async Task<IList<Vacancy>> Get()
         {   
             return await _context.Vacancy.ToListAsync();
         }
