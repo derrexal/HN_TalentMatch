@@ -11,4 +11,4 @@ RUN npm ci
 EXPOSE 5173
 EXPOSE 80
 
-CMD ["npm", "run", "dev"]
+ENTRYPOINT ["npm", "run"]
