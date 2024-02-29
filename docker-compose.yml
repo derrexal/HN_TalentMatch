@@ -21,10 +21,8 @@ services:
     container_name: vite_docker
     entrypoint: /bin/sh
     working_dir: /app
-    volumes:
-        - type: bind
-          source: ./hn_talentmatch.client
-          target: /app
+    volumes: 
+        - ./hn_talentmatch.client:/app
     tty: true
     ports:
       - 5173:5173
