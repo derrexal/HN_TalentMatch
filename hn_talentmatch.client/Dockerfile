@@ -7,8 +7,9 @@ COPY ./hn_talentmatch.client /app
 
 RUN npm update
 RUN npm ci
+RUN npm run build
 
 EXPOSE 5173
 EXPOSE 80
 
-ENTRYPOINT ["npm", "run"]
+CMD ["npm", "run", "dev"]
