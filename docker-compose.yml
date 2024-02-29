@@ -24,7 +24,6 @@ services:
     volumes: 
         - ./hn_talentmatch.client:/app
     tty: true
-    stdin_open: true    
     ports:
       - 80:5173
     depends_on:
