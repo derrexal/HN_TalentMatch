@@ -24,12 +24,14 @@ services:
     volumes: 
         - ./hn_talentmatch.client:/app
     tty: true
+    stdin_open: true    
     ports:
       - 80:5173
     depends_on:
       - hn_talentmatch.server
     restart: always
-  
+    command: ["-c", "npm run dev"]
+
   postgres_db:
     image: postgres:latest
     environment:
