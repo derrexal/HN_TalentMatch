@@ -6,10 +6,10 @@ WORKDIR /app
 COPY ./hn_talentmatch.client /app
 
 RUN npm update
-RUN npm i
+RUN npm ci
 RUN npm run build
 
 EXPOSE 5173
 EXPOSE 80
 
-ENTRYPOINT ["npm", "run", "dev"]
+CMD ["npm", "run", "dev"]
