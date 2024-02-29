@@ -17,7 +17,7 @@ services:
     image: node:alpine
     build:
        context: .
-       dockerfile: HN_TalentMatch.Client/Dockerfile
+       dockerfile: hn_talentmatch.client/Dockerfile
     container_name: vite_docker
     entrypoint: /bin/sh
     working_dir: /app
