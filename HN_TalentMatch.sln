@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HN_TalentMatch.Server", "HN
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "hn_talentmatch.client", "hn_talentmatch.client\hn_talentmatch.client.esproj", "{7B92018E-09F8-4575-ACB5-813634FD9BDF}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{18461246-536D-4B91-B26A-07D8556B055B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{7B92018E-09F8-4575-ACB5-813634FD9BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B92018E-09F8-4575-ACB5-813634FD9BDF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7B92018E-09F8-4575-ACB5-813634FD9BDF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{18461246-536D-4B91-B26A-07D8556B055B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18461246-536D-4B91-B26A-07D8556B055B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18461246-536D-4B91-B26A-07D8556B055B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18461246-536D-4B91-B26A-07D8556B055B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

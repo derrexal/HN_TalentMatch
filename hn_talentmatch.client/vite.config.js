@@ -3,7 +3,6 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import plugin from '@vitejs/plugin-react';
 
-
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [plugin()],
@@ -15,18 +14,19 @@ export default defineConfig({
     server: {
         proxy: {
             '^/weatherforecast': {
-                target: 'http://localhost:5128/',
+                target: 'http://hn_talentmatch.server:80/',
                 secure: false
             },
             '^/resumes': {
-                target: 'http://localhost:5128/',
+                target: 'http://hn_talentmatch.server:80/',
                 secure: false
             },
             '^/vacancies': {
-                target: 'http://localhost:5128/',
+                target: 'http://hn_talentmatch.server:80/',
                 secure: false
             }
         },
+        host: '0.0.0.0',
         port: 5173
     }
 })
