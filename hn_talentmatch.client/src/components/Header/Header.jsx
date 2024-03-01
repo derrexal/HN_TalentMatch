@@ -7,8 +7,8 @@ const Header = () => {
         <Container>
             <Nav>
                 <NavItem><Link to="/">Добро пожаловать!</Link></NavItem>
-                <NavItem><Link to="/data">Посмотреть прогноз погоды</Link></NavItem>
-                <NavItem><Link to="/dataCard">Посмотреть и редактировать прогноз погоды</Link></NavItem>
+                <NavItem><Link to="/vacancies">Посмотреть вакансии</Link></NavItem>
+                <NavItem><Link to="/resume">Посмотреть резюме</Link></NavItem>
             </Nav>
         </Container>
     );
