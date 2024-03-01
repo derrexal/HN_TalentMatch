@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import useData from '../../hooks/useData';
 import { Container, CardsContainer, Title } from '../../styles/VacancyStyles.js';
 import VacancyCard from '../vacancyCard/VacancyCard.jsx';
 import Modal from '../modal/Modal';
 import Pagination from "../pagination/Pagination.jsx";
 import {ActionButton} from "../../styles/CardStyles.js";
+import UseVacanciesData from "../../hooks/useVacanciesData";
 
 const VacancyPage = () => {
-    const { vacancyData, loading, error } = useData();
+    const { vacancyData, loading, error } = UseVacanciesData();
     const [currentPage, setCurrentPage] = useState(1);
     const [vacanciesPerPage] = useState(16);
     const [selectedVacancy, setSelectedVacancy] = useState(null);
