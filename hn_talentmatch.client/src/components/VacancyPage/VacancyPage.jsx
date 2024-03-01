@@ -1,59 +1,74 @@
 import React, { useState, useEffect } from 'react';
-import { Container, VacancyCardsContainer, VacancyCardView, VacancyTitle, VacancyDescription, VacancyKeywords } from '../../styles/VacancyStyles.js';
+import { Container, CardsContainer } from '../../styles/VacancyStyles.js';
+import VacancyCard from '../vacancyCard/VacancyCard.jsx';
 import Modal from '../modal/Modal';
-import VacancyCard from "../vacancyCard/VacancyCard.jsx";
-import useData from '../../hooks/useData'; // Импортируем созданный вами хук
+import useData from '../../hooks/useData';
+import Pagination from "../pagination/Pagination.jsx";
+import {ActionButton} from "../../styles/CardStyles.js";
 
 const VacancyPage = () => {
-    const { vacancyData, loading, error, getVacancyById } = useData(); // Используем хук useData
+    const { vacancyData, loading, error, getVacancyById } = useData();
 
     const [selectedVacancy, setSelectedVacancy] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [vacanciesPerPage] = useState(16);
 
     useEffect(() => {
         // Вызываем метод получения данных, если это необходимо
         // Пример использования: fetchVacancies();
     }, []); // Указываем зависимость, если это необходимо
 
-    const handleViewDetails = async (vacancyId) => {
-        try {
-            const vacancy = await getVacancyById(vacancyId);
-            setSelectedVacancy(vacancy);
-        } catch (error) {
-            console.error("Error fetching vacancy details:", error);
-        }
+    const handleViewDetails = (vacancy) => {
+        setSelectedVacancy(vacancy);
     };
 
     const handleCloseDetails = () => {
         setSelectedVacancy(null);
     };
 
+    const indexOfLastVacancy = currentPage * vacanciesPerPage;
+    const indexOfFirstVacancy = indexOfLastVacancy - vacanciesPerPage;
+    const currentVacancies = vacancyData.slice(indexOfFirstVacancy, indexOfLastVacancy);
+
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
     if (loading) {
-        return <div>Loading...</div>; // Отображаем индикатор загрузки, пока данные загружаются
+        return <div>Loading...</div>;
     }
 
     if (error) {
-        return <div>Error: {error.message}</div>; // Отображаем сообщение об ошибке, если произошла ошибка при загрузке данных
+        return <div>Error: {error.message}</div>;
     }
 
     return (
         <Container>
             <div>
                 <h2>Список вакансий</h2>
-                <VacancyCardsContainer>
-                    {vacancyData.map(vacancy => (
-                        <VacancyCardView key={vacancy.uuid}>
-                            <VacancyTitle>{vacancy.name}</VacancyTitle>
-                            <VacancyDescription>{vacancy.description}</VacancyDescription>
-                            <VacancyKeywords>Требуемые навыки: {vacancy.keywords}</VacancyKeywords>
-                            <button onClick={() => handleViewDetails(vacancy.id)}>Подробнее</button>
-                        </VacancyCardView>
+                <CardsContainer>
+                    {currentVacancies.map(vacancy => (
+                        <div>                            
+                            <VacancyCard
+                                key={vacancy.uuid}
+                                vacancy={vacancy}
+                            />
+                            <ActionButton onClick={() => handleViewDetails(vacancy)}>Подробнее</ActionButton>
+                        </div>
                     ))}
-                </VacancyCardsContainer>
+                </CardsContainer>
             </div>
+
+            <Pagination
+                totalPages={Math.ceil(vacancyData.length / vacanciesPerPage)}
+                currentPage={currentPage}
+                paginate={paginate}
+            />
 
             {selectedVacancy && (
                 <Modal onClose={handleCloseDetails}>
-                    <VacancyCard vacancyId={selectedVacancy.id} />
+                    <VacancyCard 
+                        vacancy={selectedVacancy} 
+                        handleViewDetails={() => handleViewDetails(selectedVacancy)} 
+                    />
                 </Modal>
             )}
         </Container>

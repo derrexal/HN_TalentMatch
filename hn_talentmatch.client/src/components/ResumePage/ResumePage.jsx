@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Container, Title } from '../../styles/ResumePageStyles.js';
 import ResumeCard from '../resumeCard/ResumeCard';
 import useData from '../../hooks/useData.js';
 import Modal from '../modal/Modal';
 import Pagination from "../pagination/Pagination.jsx";
+import { Container, Title, CardsContainer } from '../../styles/ResumePageStyles';
+import {ActionButton} from "../../styles/CardStyles.js";
 
 const ResumePage = () => {
     const { resumeData, loading, error } = useData();
     const [currentPage, setCurrentPage] = useState(1);
-    const [resumesPerPage] = useState(10);
+    const [resumesPerPage] = useState(16);
     const [selectedResume, setSelectedResume] = useState(null);
 
     const indexOfLastResume = currentPage * resumesPerPage;
@@ -34,27 +35,28 @@ const ResumePage = () => {
     }
 
     return (
-        <Container style={{ display: 'flex', flexDirection: 'column' }}>
+        <Container>
             <Title>Список резюме</Title>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
+            <CardsContainer>
                 {currentResumes.map(resume => (
-                    <ResumeCard
-                        key={resume.uuid}
-                        resume={resume}
-                        handleViewResume={() => handleViewResume(resume)}
-                    />
+                    <div>                        
+                        <ResumeCard
+                            key={resume.uuid}
+                            resume={resume}                            
+                        />
+                        <ActionButton onClick={() => handleViewResume(resume)}>Подробнее</ActionButton>
+                    </div>
                 ))}
-            </div>
+            </CardsContainer>
             <Pagination
-                resumesPerPage={resumesPerPage}
-                totalResumes={resumeData.length}
+                totalPages={Math.ceil(resumeData.length / resumesPerPage)}
+                currentPage={currentPage}
                 paginate={paginate}
             />
             {selectedResume && (
                 <Modal onClose={handleCloseDetails}>
                     <ResumeCard
-                        first_name={selectedResume.first_name}
-                        about={selectedResume.about}
+                        resume={selectedResume}
                     />
                 </Modal>
             )}

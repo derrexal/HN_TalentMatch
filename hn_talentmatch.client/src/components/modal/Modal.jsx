@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import { ModalOverlay, ModalContainer, CloseButton } from '../../styles/ModalStyles'; // Импортируем стилизованные компоненты из файла ModalStyles
+import { ModalOverlay, ModalContainer, CloseButton } from '../../styles/ModalStyles';
+import {ActionButton} from "../../styles/CardStyles.js"; // Импортируем стилизованные компоненты из файла ModalStyles
 
-const Modal = ({ onClose, children }) => {
+const Modal = ({ onClose, children, handleCloseDetails }) => {
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (!event.target.closest('.modal-container')) {
@@ -23,6 +24,7 @@ const Modal = ({ onClose, children }) => {
             <ModalContainer className="modal-container">
                 <CloseButton onClick={onClose}>X</CloseButton>
                 {children}
+                <ActionButton onClick={onClose}>Закрыть</ActionButton>
             </ModalContainer>
         </ModalOverlay>,
         document.getElementById('modal-root')

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const PaginationContainer = styled.div`
   display: flex;
@@ -19,4 +19,10 @@ export const PaginationButton = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+
+  ${({ disabled }) => disabled && css`
+    opacity: 0.5;
+    pointer-events: none;
+    filter: grayscale(100%);
+  `}
 `;

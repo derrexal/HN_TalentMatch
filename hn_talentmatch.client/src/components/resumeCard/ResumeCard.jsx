@@ -1,14 +1,16 @@
-// ResumeCard.jsx
 import React from 'react';
-import { ResumeCardContainer, ResumeCardTitle, ResumeCardDescription, ViewResumeButton } from '../../styles/ResumeCardStyles.js';
+import { CardContainer, CardContent, CardTitle, CardDescription, ActionButton } from '../../styles/CardStyles';
 
-const ResumeCard = ({ resume, handleViewResume }) => {
+const ResumeCard = ({ resume }) => {
+    const { first_name, about } = resume;
+
     return (
-        <ResumeCardContainer>
-            <ResumeCardTitle>{resume.first_name}</ResumeCardTitle>
-            <ResumeCardDescription>{resume.about}</ResumeCardDescription>
-            <ViewResumeButton onClick={handleViewResume}>Подробнее</ViewResumeButton>
-        </ResumeCardContainer>
+        <CardContainer>
+            <CardContent>
+                <CardTitle>{first_name}</CardTitle>
+                <CardDescription>{about}</CardDescription>
+            </CardContent>
+        </CardContainer>
     );
 }
 
