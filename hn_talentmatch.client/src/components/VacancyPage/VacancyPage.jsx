@@ -1,23 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Container, CardsContainer } from '../../styles/VacancyStyles.js';
+import React, { useState } from 'react';
+import useData from '../../hooks/useData';
+import { Container, CardsContainer, Title } from '../../styles/VacancyStyles.js';
 import VacancyCard from '../vacancyCard/VacancyCard.jsx';
 import Modal from '../modal/Modal';
-import useData from '../../hooks/useData';
 import Pagination from "../pagination/Pagination.jsx";
 import {ActionButton} from "../../styles/CardStyles.js";
 
 const VacancyPage = () => {
-    const { vacancyData, loading, error, getVacancyById } = useData();
-
-    const [selectedVacancy, setSelectedVacancy] = useState(null);
+    const { vacancyData, loading, error } = useData();
     const [currentPage, setCurrentPage] = useState(1);
     const [vacanciesPerPage] = useState(16);
+    const [selectedVacancy, setSelectedVacancy] = useState(null);
 
-    useEffect(() => {
-        // Вызываем метод получения данных, если это необходимо
-        // Пример использования: fetchVacancies();
-    }, []); // Указываем зависимость, если это необходимо
+    const indexOfLastVacancy = currentPage * vacanciesPerPage;
+    const indexOfFirstVacancy = indexOfLastVacancy - vacanciesPerPage;
+    const currentVacancies = vacancyData.slice(indexOfFirstVacancy, indexOfLastVacancy);
+    const totalPages = Math.ceil(vacancyData.length / vacanciesPerPage);
 
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+    
     const handleViewDetails = (vacancy) => {
         setSelectedVacancy(vacancy);
     };
@@ -25,12 +26,6 @@ const VacancyPage = () => {
     const handleCloseDetails = () => {
         setSelectedVacancy(null);
     };
-
-    const indexOfLastVacancy = currentPage * vacanciesPerPage;
-    const indexOfFirstVacancy = indexOfLastVacancy - vacanciesPerPage;
-    const currentVacancies = vacancyData.slice(indexOfFirstVacancy, indexOfLastVacancy);
-
-    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -43,7 +38,7 @@ const VacancyPage = () => {
     return (
         <Container>
             <div>
-                <h2>Список вакансий</h2>
+                <Title>Список вакансий</Title>
                 <CardsContainer>
                     {currentVacancies.map(vacancy => (
                         <div>                            
@@ -57,11 +52,13 @@ const VacancyPage = () => {
                 </CardsContainer>
             </div>
 
-            <Pagination
-                totalPages={Math.ceil(vacancyData.length / vacanciesPerPage)}
-                currentPage={currentPage}
-                paginate={paginate}
-            />
+            {totalPages !== 1 ?
+                <Pagination
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    paginate={paginate}
+                /> : null   
+            }
 
             {selectedVacancy && (
                 <Modal onClose={handleCloseDetails}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardContainer, CardContent, CardTitle, CardDescription, ActionButton } from '../../styles/CardStyles';
+import { CardContainer, CardContent, CardTitle, CardDescription } from '../../styles/CardStyles';
 
 const ResumeCard = ({ resume }) => {
     const { first_name, about } = resume;

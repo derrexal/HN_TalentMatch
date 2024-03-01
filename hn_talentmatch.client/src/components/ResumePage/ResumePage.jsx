@@ -15,6 +15,7 @@ const ResumePage = () => {
     const indexOfLastResume = currentPage * resumesPerPage;
     const indexOfFirstResume = indexOfLastResume - resumesPerPage;
     const currentResumes = resumeData.slice(indexOfFirstResume, indexOfLastResume);
+    const totalPages = Math.ceil(resumeData.length / resumesPerPage);
 
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
@@ -48,11 +49,15 @@ const ResumePage = () => {
                     </div>
                 ))}
             </CardsContainer>
-            <Pagination
-                totalPages={Math.ceil(resumeData.length / resumesPerPage)}
-                currentPage={currentPage}
-                paginate={paginate}
-            />
+
+            {totalPages !== 1 ?
+                <Pagination
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    paginate={paginate}
+                /> : null
+            }
+            
             {selectedResume && (
                 <Modal onClose={handleCloseDetails}>
                     <ResumeCard

@@ -22,7 +22,7 @@ const App = () => {
                 <Header />
                 <Routes> {/* Здесь используется компонент Routes */}
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/vacancies" element={<VacancyPage />} />
+                    <Route path="/vacancy" element={<VacancyPage />} />
                     <Route path="/resume" element={<ResumePage />} />
                 </Routes>
             </div>

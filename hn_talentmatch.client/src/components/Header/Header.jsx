@@ -7,7 +7,7 @@ const Header = () => {
         <Container>
             <Nav>
                 <NavItem><Link to="/">Добро пожаловать!</Link></NavItem>
-                <NavItem><Link to="/vacancies">Посмотреть вакансии</Link></NavItem>
+                <NavItem><Link to="/vacancy">Посмотреть вакансии</Link></NavItem>
                 <NavItem><Link to="/resume">Посмотреть резюме</Link></NavItem>
             </Nav>
         </Container>

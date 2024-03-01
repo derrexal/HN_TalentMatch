@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardContainer, CardContent, CardTitle, CardDescription, ActionButton } from '../../styles/CardStyles';
+import { CardContainer, CardContent, CardTitle, CardDescription } from '../../styles/CardStyles';
 
 const VacancyCard = ({ vacancy }) => {
     const { name, description, keywords } = vacancy;
